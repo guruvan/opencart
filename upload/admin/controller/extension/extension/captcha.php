@@ -93,7 +93,8 @@ class ControllerExtensionExtensionCaptcha extends Controller {
 		$data['extensions'] = array();
 
 		// Compatibility code for old extension folders
-		$files = glob(DIR_APPLICATION . 'controller/{extension/captcha,captcha}/*.php', GLOB_BRACE);
+		$files = glob(DIR_APPLICATION . 'controller/extension/captcha/*.php');
+		$files = array_merge($files, glob(DIR_APPLICATION . 'controller/captcha/*.php'));
 
 		if ($files) {
 			foreach ($files as $file) {

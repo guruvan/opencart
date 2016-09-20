@@ -89,7 +89,8 @@ class ControllerExtensionExtensionFeed extends Controller {
 		$data['extensions'] = array();
 
 		// Compatibility code for old extension folders
-		$files = glob(DIR_APPLICATION . 'controller/{extension/feed,feed}/*.php', GLOB_BRACE);
+		$files = glob(DIR_APPLICATION . 'controller/feed/*.php');
+		$files = array_merge($files, glob(DIR_APPLICATION . 'controller/extension/feed/*.php'));
 
 		if ($files) {
 			foreach ($files as $file) {

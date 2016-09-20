@@ -97,7 +97,13 @@ class ControllerDesignLanguage extends Controller {
 			$path_data = array();
 			
 			// We grab the files from the default theme directory first as the custom themes drops back to the default theme if selected theme files can not be found.
-			$files = glob(rtrim(DIR_CATALOG . 'language/{en-gb,' . $language_info['code'] . '}/' . $path, '/') . '/*', GLOB_BRACE);
+			$langdirs = array('en-gb', $language_info['code']);
+                        foreach ($langdirs as $langdir) {
+                                $filestemp = glob(rtrim(DIR_CATALOG . 'language/' . $langdir . '/' . $path, '/') . '/*');
+                                if ($filestemp) {
+                                        $files = array_merge($files, $filestemp);
+                                }
+                        }
 			
 			if ($files) {
 				foreach($files as $file) {

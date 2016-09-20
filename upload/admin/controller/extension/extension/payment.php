@@ -92,7 +92,8 @@ class ControllerExtensionExtensionPayment extends Controller {
 		$data['extensions'] = array();
 
 		// Compatibility code for old extension folders
-		$files = glob(DIR_APPLICATION . 'controller/{extension/payment,payment}/*.php', GLOB_BRACE);
+		$files = glob(DIR_APPLICATION . 'controller/payment/*.php');
+		$files = array_merge($files, glob(DIR_APPLICATION . 'controller/extension/payment/*.php'));
 
 		if ($files) {
 			foreach ($files as $file) {
